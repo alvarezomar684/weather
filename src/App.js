@@ -73,7 +73,8 @@ function App() {
           
 
       if(location){
-        const url =`http://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no`
+        const url = `https://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no` ///HTTPS
+        // const url =`http://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no` //HTTP
         const response = await fetch(url).then(res => res.json())
         setData(response)
       }
