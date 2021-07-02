@@ -49,7 +49,8 @@ function App() {
     ;(async()=>{
           
       if(ip){
-        const url = `http://ip-api.com/json/${ip.ip}`
+        // const url = `http://ip-api.com/json/${ip.ip}` ///HTTP
+        const url = `https://ipapi.co/${ip.ip}/json/`/////HTTPS
         const responseLocation = await fetch(url).then(res => res.json())
         setLocation(responseLocation)
       }        
