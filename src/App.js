@@ -21,6 +21,8 @@ function App() {
   const [tempC, setTempC] = useState(0)
   const [tempF, setTempF] = useState(0)
 
+  const [changedTemp, setChangedTemp] = useState("")
+
   //Consiguiendo IP del usuario
   useEffect(()=>{  
    
@@ -49,7 +51,7 @@ function App() {
     ;(async()=>{
           
       if(ip){
-        // const url = `http://ip-api.com/json/${ip.ip}` ///HTTP
+        // const url = `http://ip-api.com/json/${ip.ip}`
         const url = `https://ipapi.co/${ip.ip}/json/`/////HTTPS
         const responseLocation = await fetch(url).then(res => res.json())
         setLocation(responseLocation)
@@ -74,8 +76,8 @@ function App() {
           
 
       if(location){
+        // const url =`http://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no`
         const url = `https://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no` ///HTTPS
-        // const url =`http://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no` //HTTP
         const response = await fetch(url).then(res => res.json())
         setData(response)
       }
@@ -95,6 +97,7 @@ function App() {
       setPressure(data.current.pressure_mb)
       setTempC(data.current.temp_c)
       setTempF(data.current.temp_f)
+      setChangedTemp(`${data.current.temp_c}°C`)
     }
   },[data,city,state,country,condition,wind,conditionImg,pressure,tempC,tempF])
 
@@ -106,8 +109,8 @@ function App() {
       <header className="App-header">
         <Title city={city} state={state} country={country} />
         <WeatherInfo condition={condition} wind={wind} pressure={pressure} />
-        <WeatherImg conditionImg={conditionImg} tempC={tempC} condition={condition}/>
-        <ChangedDegrees />
+        <WeatherImg conditionImg={conditionImg} temp={changedTemp} condition={condition}/>
+        <ChangedDegrees tempC={tempC} tempF={tempF} changedTemp={changedTemp} setChangedTemp={setChangedTemp}/>
       </header>
       
     </div>
