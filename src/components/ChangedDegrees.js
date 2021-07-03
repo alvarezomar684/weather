@@ -1,17 +1,12 @@
 const ChangedDegrees = ({tempF,tempC,changedTemp,setChangedTemp}) => {
     return(
-        // <button onClick={changed}
-        
-        // >DEGREES °F/°C</button>
-
         <button onClick = { () => {
                 
-            if(changedTemp===`${tempC}°C`){
-                setChangedTemp(`${tempF}°F`)
-              }else{
-                setChangedTemp(`${tempC}°C`)
-              }
-            
+          if(changedTemp===`${tempC}°C`){
+            setChangedTemp(`${tempF}°F`)
+          }else{
+            setChangedTemp(`${tempC}°C`)
+          }   
 
         }}
         

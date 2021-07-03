@@ -23,7 +23,7 @@ function App() {
 
   const [changedTemp, setChangedTemp] = useState("")
 
-  //Consiguiendo IP del usuario
+  ///////////////////////////////////////////Consiguiendo IP del usuario//////////////////////////////////////////////////////
   useEffect(()=>{  
    
     ;(async()=>{
@@ -35,24 +35,14 @@ function App() {
 
   },[])
 
-  useEffect(()=>{
-    if(ip){
-      // console.log(ip);//Todo el arreglo
-      // console.log(ip.ip);//Todo el arreglo    
-    }
-  },[ip])
-
-
-
-
-  //consiguiendo locazicacion del usuario Ciudad, Estado, Pais etc
+  ////////////////////////////////////consiguiendo locazicacion del usuario Ciudad, Estado, Pais etc////////////////////////////////
   useEffect(()=>{  
    
     ;(async()=>{
           
       if(ip){
-        // const url = `http://ip-api.com/json/${ip.ip}`
-        const url = `https://ipapi.co/${ip.ip}/json/`/////HTTPS
+        
+        const url = `https://ipapi.co/${ip.ip}/json/`
         const responseLocation = await fetch(url).then(res => res.json())
         setLocation(responseLocation)
       }        
@@ -61,23 +51,14 @@ function App() {
 
   },[ip])
 
-  useEffect(()=>{
-    if(location){
-      // console.log(location);//Todo el arreglo    
-    }
-  },[location])
-
-
-
-  //Usando datos conseguidos para obtener info del clima segun region del usuario
+  ///////////////////////////////////////////consiguiendo info clima segun la region en la que se encuentre el usuario////////////////////////
   useEffect(()=>{
     
     ;(async()=>{
           
 
-      if(location){
-        // const url =`http://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no`
-        const url = `https://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no` ///HTTPS
+      if(location){        
+        const url = `https://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no`
         const response = await fetch(url).then(res => res.json())
         setData(response)
       }
@@ -101,15 +82,14 @@ function App() {
     }
   },[data,city,state,country,condition,wind,conditionImg,pressure,tempC,tempF])
 
-  
-
-
   return (
     <div className="App">
       <header className="App-header">
         <Title city={city} state={state} country={country} />
-        <WeatherInfo condition={condition} wind={wind} pressure={pressure} />
-        <WeatherImg conditionImg={conditionImg} temp={changedTemp} condition={condition}/>
+        <div className="weather">          
+          <WeatherImg conditionImg={conditionImg} temp={changedTemp} condition={condition}/>
+          <WeatherInfo condition={condition} wind={wind} pressure={pressure}/>
+        </div>        
         <ChangedDegrees tempC={tempC} tempF={tempF} changedTemp={changedTemp} setChangedTemp={setChangedTemp}/>
       </header>
       

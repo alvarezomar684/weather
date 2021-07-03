@@ -1,38 +1,64 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  text-align: center;  
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #282c34;  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: white;   
 }
 
-.App-link {
-  color: #61dafb;
+.App-header > div > h1 {
+  color: #FCDAB7;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-header > div > h2 > span {
+  color: #FCDAB7;
+}
+
+.App-header > div > h2 {
+  color: #1c5496;
+}
+
+.weather {  
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  justify-content: space-between;
+}
+
+.weather > div:first-child {  
+  margin: 50px;  
+}
+
+.weather > div:last-child { 
+  color: #FCDAB7;
+}
+
+.weather > div > h3 > span { 
+  color: #1c5496;
+}
+
+.weather > div:first-child > h3 { 
+  color: #FCDAB7;
+}
+
+.App-header > button {
+  padding: 20px;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  color: #FCDAB7;  
+  background-color: #132b48;
+  border: 3px solid #FCDAB7;
+  cursor: pointer;
+}
+
+.App-header > button:hover {
+  background-color: #1c5496;
 }
