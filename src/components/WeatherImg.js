@@ -1,8 +1,8 @@
-const WeatherImg = ({conditionImg,tempC,condition}) => {
+const WeatherImg = ({conditionImg,temp,condition}) => {
     return(
         <div>
             <img src={conditionImg} alt={condition} />
-            <h3>{tempC} °C </h3>
+            <h3>{temp}</h3>
         </div>
     )
 }
