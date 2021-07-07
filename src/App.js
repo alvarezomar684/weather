@@ -10,6 +10,7 @@ function App() {
   const [ip, setIP] = useState (null)
   const [location, setLocation] = useState (null)
   const [data, setData] = useState (null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const [city, setCity] = useState("")
   const [state, setState] = useState("")
@@ -61,9 +62,12 @@ function App() {
         const url = `https://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no`
         const response = await fetch(url).then(res => res.json())
         setData(response)
+        setIsLoading(false)
       }
+      
     
     })()
+    setIsLoading(true)
 
   },[location])
 
@@ -84,15 +88,16 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Title city={city} state={state} country={country} />
-        <div className="weather">          
-          <WeatherImg conditionImg={conditionImg} temp={changedTemp} condition={condition}/>
-          <WeatherInfo condition={condition} wind={wind} pressure={pressure}/>
-        </div>        
-        <ChangedDegrees tempC={tempC} tempF={tempF} changedTemp={changedTemp} setChangedTemp={setChangedTemp}/>
-      </header>
-      
+      {isLoading 
+          ? <p className="loading">Cargando Informacion</p>
+          : data && <header className="App-header">  
+                      <Title city={city} state={state} country={country} />
+                      <div className="weather">          
+                        <WeatherImg conditionImg={conditionImg} temp={changedTemp} condition={condition}/>
+                        <WeatherInfo condition={condition} wind={wind} pressure={pressure}/>
+                      </div>        
+                      <ChangedDegrees tempC={tempC} tempF={tempF} changedTemp={changedTemp} setChangedTemp={setChangedTemp}/>
+                    </header> }      
     </div>
   );
 }

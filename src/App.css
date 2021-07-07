@@ -2,9 +2,19 @@
   text-align: center;  
 }
 
+.loading { 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(70px + 2vmin);
+  color: blue; 
+}
+
 .App-header {  
   background-image: url(0d90cc54f3566d5473436701711945ed.jpg);
-  background-repeat: no-repeat;  
+  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
