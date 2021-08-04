@@ -36,7 +36,7 @@ function App() {
 
   },[])
 
-  ////////////////////////////////////consiguiendo locazicacion del usuario Ciudad, Estado, Pais etc////////////////////////////////
+  ////////////////////////////////////consiguiendo localizacion del usuario Ciudad, Estado, Pais etc////////////////////////////////
   useEffect(()=>{  
    
     ;(async()=>{
@@ -69,7 +69,7 @@ function App() {
     })()
     setIsLoading(true)
 
-  },[location])
+  },[location])  
 
   useEffect(()=>{
     if(data){
@@ -84,7 +84,7 @@ function App() {
       setTempF(data.current.temp_f)
       setChangedTemp(`${data.current.temp_c}°C`)
     }
-  },[data,city,state,country,condition,wind,conditionImg,pressure,tempC,tempF])
+  },[data])
 
   return (
     <div className="App">
