@@ -1,3 +1,7 @@
+body {
+  background-color: black;
+}
+
 .App {
   text-align: center;  
 }
@@ -12,7 +16,7 @@
   color: blue; 
 }
 
-.App-header {  
+/* .App-header {  
   background-image: url(0d90cc54f3566d5473436701711945ed.jpg);
   background-repeat: no-repeat;
   min-height: 100vh;
@@ -22,6 +26,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;   
+} */
+
+.App-header {
+  font-size: calc(10px + 2vmin);
 }
 
 .App-header > div > h1 {
@@ -84,4 +92,29 @@
 
 .App-header > button:hover {
   background-color: #1c5496;
+}
+
+
+
+@media (max-width: 432px){  
+
+  .video-stream {
+    height: 2000px;
+  } 
+
+  .html5-video-player {
+    height: 2000px;
+  }
+
+  .App-header > button {
+    
+    background-color: #481313;
+    border: 3px solid #FCDAB7;
+   
+  }
+
+  .weather-container {
+    border: 2px solid red;
+  }
+  
 }

@@ -4,6 +4,7 @@ import WeatherInfo from './components/WeatherInfo';
 import WeatherImg from './components/WeatherImg';
 import ChangedDegrees from './components/ChangedDegrees';
 import './App.css';
+import ReactPlayer from 'react-player'
 
 function App() {
 
@@ -25,50 +26,36 @@ function App() {
   const [changedTemp, setChangedTemp] = useState("")
 
   ///////////////////////////////////////////Consiguiendo IP del usuario//////////////////////////////////////////////////////
-  useEffect(()=>{  
-   
+  useEffect(()=>{     
     ;(async()=>{
       const url =`https://api.ipify.org?format=json`    
       const responseIP = await fetch(url).then(res => res.json())
-      setIP(responseIP)
-    
+      setIP(responseIP)    
     })()
-
   },[])
 
   ////////////////////////////////////consiguiendo localizacion del usuario Ciudad, Estado, Pais etc////////////////////////////////
-  useEffect(()=>{  
-   
-    ;(async()=>{
-          
-      if(ip){
-        
+  useEffect(()=>{     
+    ;(async()=>{          
+      if(ip){        
         const url = `https://ipapi.co/${ip.ip}/json/`
         const responseLocation = await fetch(url).then(res => res.json())
         setLocation(responseLocation)
-      }        
-    
+      }            
     })()
-
   },[ip])
 
   ///////////////////////////////////////////consiguiendo info clima segun la region en la que se encuentre el usuario////////////////////////
-  useEffect(()=>{
-    
+  useEffect(()=>{    
     ;(async()=>{
-          
-
       if(location){        
         const url = `https://api.weatherapi.com/v1/current.json?key=85a58b84fe6f431bbc124436210207&q=${encodeURI(location.city)}&aqi=no`
         const response = await fetch(url).then(res => res.json())
         setData(response)
         setIsLoading(false)
-      }
-      
-    
+      }    
     })()
     setIsLoading(true)
-
   },[location])  
 
   useEffect(()=>{
@@ -87,17 +74,31 @@ function App() {
   },[data])
 
   return (
-    <div className="App">
-      {isLoading 
-          ? <p className="loading">Cargando Informacion</p>
+    <div className="App row " style={{display:"flex", justifyContent:"center"}}>    
+      <div className="weather-container m-5 "  style={{position:"absolute", marginTop:"10rem"}}  >
+          {isLoading ? <p className="loading">Cargando Informacion</p>
+          
           : data && <header className="App-header">  
                       <Title city={city} state={state} country={country} />
                       <div className="weather">          
                         <WeatherImg conditionImg={conditionImg} temp={changedTemp} condition={condition}/>
                         <WeatherInfo condition={condition} wind={wind} pressure={pressure}/>
                       </div>        
-                      <ChangedDegrees tempC={tempC} tempF={tempF} changedTemp={changedTemp} setChangedTemp={setChangedTemp}/>
-                    </header> }      
+                      <ChangedDegrees tempC={tempC} tempF={tempF} changedTemp={changedTemp} setChangedTemp={setChangedTemp}/>               
+                      </header> } 
+      </div>
+      <div>
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=EKGl24bp1MU"
+          className='react-player video'
+          playing="true"
+          loop="true"
+          muted="true"
+          width='2000px'
+          height='1000px'   
+          style={{zIndex:"0"}}              
+        />
+      </div>                   
     </div>
   );
 }
